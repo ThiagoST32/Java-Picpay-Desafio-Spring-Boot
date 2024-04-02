@@ -4,6 +4,7 @@ import estudos.ProjetoCrud.domain.User;
 import estudos.ProjetoCrud.domain.UserType;
 import estudos.ProjetoCrud.dto.UserDTO;
 import estudos.ProjetoCrud.repositories.UserRepositories;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,14 @@ public class UserService {
         return this.userRepositories.findAll();
     }
 
-    public void deleteUser(){
+    @Transactional
+    public void deleteUser(Long id){
+        try {
+            this.userRepositories.findById(id);
 
+        } catch (Exception e) {
+            throw new RuntimeException("Não foi possível deletar o usuario!!");
+        }
     }
 
 }
