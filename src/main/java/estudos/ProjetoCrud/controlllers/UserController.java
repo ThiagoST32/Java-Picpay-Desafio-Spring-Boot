@@ -2,13 +2,11 @@ package estudos.ProjetoCrud.controlllers;
 
 import estudos.ProjetoCrud.domain.User;
 import estudos.ProjetoCrud.dto.UserDTO;
-import estudos.ProjetoCrud.repositories.UserRepositories;
+import estudos.ProjetoCrud.dto.UserUpdateDTO;
 import estudos.ProjetoCrud.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,9 +38,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public User updateUser(@RequestBody UserUpdateDTO userUpdateDTO , @PathVariable("id")Long id) throws Exception {
+        return userService.updateUser(userUpdateDTO, id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable("id") Long id){
         this.userService.deleteUser(id);
-
     }
 }
