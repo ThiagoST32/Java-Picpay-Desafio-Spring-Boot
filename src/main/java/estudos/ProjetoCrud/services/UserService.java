@@ -51,7 +51,8 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         try {
-            this.userRepositories.findById(id);
+            this.userRepositories.deleteById(id);
+            System.out.println("Usuario deletado com sucesso!!");
         } catch (Exception e) {
             throw new RuntimeException("Não foi possível deletar o usuario!!");
         }
