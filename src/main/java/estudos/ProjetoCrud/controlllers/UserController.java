@@ -35,8 +35,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User>getOneUser(Long id) throws Exception {
+    public ResponseEntity<User>getOneUser(@PathVariable("id")  Long id) throws Exception {
         User user = userService.findByIdUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable("id") Long id){
+        this.userService.deleteUser(id);
+
     }
 }
