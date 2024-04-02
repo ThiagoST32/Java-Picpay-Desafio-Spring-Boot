@@ -2,6 +2,7 @@ package estudos.ProjetoCrud.domain;
 
 
 import estudos.ProjetoCrud.dto.UserDTO;
+import estudos.ProjetoCrud.dto.UserUpdateDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -43,4 +44,13 @@ public class User {
         this.tokens = data.tokens();
         this.userType = data.userType();
     }
+
+    public User(UserUpdateDTO data){
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.email = data.email();
+        this.userType = data.userType();
+    }
 }
+
+
