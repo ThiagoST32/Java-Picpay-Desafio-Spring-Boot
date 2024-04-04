@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,7 +18,7 @@ public class UserService {
     @Autowired
     private UserRepositories userRepositories;
 
-    public void verifyTypeUser(User sender, BigDecimal tokens) throws Exception {
+    public void verifyTransaction(User sender, BigDecimal tokens) throws Exception {
         if (sender.getUserType() == UserType.Receiver) {
             throw new Exception("O usuario não pode fazer transações");
         }
@@ -28,7 +27,7 @@ public class UserService {
         }
     }
 
-    public User findByIdUser(Long id) throws Exception {
+    public User findByIdUser(java.lang.Long id) throws Exception {
         return this.userRepositories.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!!"));
     }
 
@@ -49,7 +48,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUser(Long id) {
+    public void deleteUser(java.lang.Long id) {
         try {
             this.userRepositories.deleteById(id);
             System.out.println("Usuario deletado com sucesso!!");
@@ -60,7 +59,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(UserUpdateDTO userUpdateDTO, Long id) throws Exception {
+    public User updateUser(UserUpdateDTO userUpdateDTO, java.lang.Long id) throws Exception {
         User newObjUser = findByIdUser(id);
         if (id == newObjUser.getId()){
             newObjUser.setUserType(userUpdateDTO.userType());
