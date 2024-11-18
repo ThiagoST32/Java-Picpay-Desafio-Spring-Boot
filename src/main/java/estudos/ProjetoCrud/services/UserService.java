@@ -27,7 +27,7 @@ public class UserService {
         }
     }
 
-    public User findByIdUser(java.lang.Long id) throws Exception {
+    public User findByIdUser(Long id) throws Exception {
         return this.userRepositories.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!!"));
     }
 
@@ -48,7 +48,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUser(java.lang.Long id) {
+    public void deleteUser(Long id) {
         try {
             this.userRepositories.deleteById(id);
             System.out.println("Usuario deletado com sucesso!!");
@@ -59,8 +59,8 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(UserUpdateDTO userUpdateDTO, java.lang.Long id) throws Exception {
-        User newObjUser = findByIdUser(id);
+    public User updateUser(UserUpdateDTO userUpdateDTO, Long id) throws Exception {
+       User newObjUser = findByIdUser(id);
         if (id == newObjUser.getId()){
             newObjUser.setUserType(userUpdateDTO.userType());
             newObjUser.setEmail(userUpdateDTO.email());

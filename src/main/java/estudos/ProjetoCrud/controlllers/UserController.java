@@ -33,18 +33,18 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User>getOneUser(@PathVariable("id") java.lang.Long id) throws Exception {
+    public ResponseEntity<User>getOneUser(@PathVariable("id") Long id) throws Exception {
         User user = userService.findByIdUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@RequestBody UserUpdateDTO userUpdateDTO , @PathVariable("id") java.lang.Long id) throws Exception {
+    public User updateUser(@RequestBody UserUpdateDTO userUpdateDTO , @PathVariable("id") Long id) throws Exception {
         return userService.updateUser(userUpdateDTO, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable("id") java.lang.Long id){
+    public void deleteUserById(@PathVariable("id") Long id){
         this.userService.deleteUser(id);
     }
 }
